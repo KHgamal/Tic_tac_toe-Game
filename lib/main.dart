@@ -9,7 +9,7 @@ import 'package:tic_tac_toe/pages/names.dart';
 
 void main()=> runApp(
 DevicePreview(
-  enabled: false,
+  enabled: true,
   builder: (context) {
     return     ChangeNotifierProvider(
 

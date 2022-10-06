@@ -21,29 +21,31 @@ class Names extends StatelessWidget {
       body: SafeArea( child:
       Form(
         key:formKey ,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Enter player Name", style: style,),
-              SizedBox(
-                height: MediaQuery.of(context).size.height*0.06,
-              ),
-              CustomTextField(
-                prefixIcon: const Icon(Icons.close, color: Colors.red, size: 30,) ,
-                user: userName, label: " Enter 1'st player name",),
-              secondPlayer=='pc'? customButton(context, 'pc'):
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+             // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Enter player Name", style: style,),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height*0.06,
+                ),
+                CustomTextField(
+                  prefixIcon: const Icon(Icons.close, color: Colors.red, size: 30,) ,
+                  user: userName, label: " Enter 1'st player name",),
+                secondPlayer=='pc'? customButton(context, 'pc'):
 
-                  Column(
-                   children: [
-                     CustomTextField(
+                    Column(
+                     children: [
+                       CustomTextField(
     prefixIcon: const Icon(Icons.circle_outlined, color: Colors.blue, size: 30,) ,
     user: user, label: " Enter 2'nd player name",),
-                     customButton(context,'')
-                   ],
+                       customButton(context,'')
+                     ],
 
-               ),
-            ],
+                 ),
+              ],
+            ),
           ),
         ),
       ) ),

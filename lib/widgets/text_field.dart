@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding:  EdgeInsets.symmetric(
            vertical: MediaQuery.of(context).size.height*0.04,
-               horizontal: MediaQuery.of(context).size.height*0.05
+               horizontal: MediaQuery.of(context).size.height*0.03
       ),
       child: TextFormField(
         validator: (value) {

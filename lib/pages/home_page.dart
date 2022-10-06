@@ -36,12 +36,12 @@ static String id='MyHomePage';
 
   Padding firstBloc(context) {
     return Padding(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.15),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.13),
                     child: RichText(
                       text: const  TextSpan(
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 50,
+                          fontSize: 65,
                           color: Colors.indigo,
                         ),
                         children:  [
@@ -84,8 +84,8 @@ static String id='MyHomePage';
   } customButton(label,context,arguments){
    return CustomButton(
         backgroundColor: Colors.indigo,
-        width: 180,
-        height: 50,
+        width: 195,
+        height: 65,
         marginNum:0,
         onTap: ()=>Navigator.pushNamed(context, Names.id,arguments: arguments),
         label:label);

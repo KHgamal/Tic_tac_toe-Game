@@ -7,7 +7,7 @@ TextStyle xStyle=const TextStyle(fontSize: 40,color: Colors.red,fontWeight: Font
 TextStyle oStyle=const TextStyle(fontSize: 40,color: Colors.indigo,fontWeight: FontWeight.bold);
 
 //Enter player name
-TextStyle style=const TextStyle(fontSize:30,color: Colors.indigo, fontWeight: FontWeight.bold);
+TextStyle style=const TextStyle(fontSize:35,color: Colors.indigo, fontWeight: FontWeight.bold);
 
 //sentences like It's turn and is the winner
 const TextStyle textStyle= TextStyle(fontSize: 30,color: Colors.black);

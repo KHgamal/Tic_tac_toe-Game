@@ -21,9 +21,9 @@ static String id = 'game';
           child: MediaQuery.of(context).orientation==Orientation.portrait ?Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              firstBloc(context, provider),
-              gameShape(context, provider, secondPlayer),
-              secondBloc(context, provider),
+              Expanded(child: firstBloc(context, provider),),
+              gameShape(context, provider, secondPlayer,2),
+              Expanded(child: secondBloc(context, provider),)
             ],
           ): Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +37,7 @@ static String id = 'game';
                   ],
                 ),
               ),
-              gameShape(context, provider, secondPlayer),
+              gameShape(context, provider, secondPlayer,1),
             ],
           )
         ),
@@ -66,7 +66,9 @@ mainAxisAlignment: MainAxisAlignment.center,
               ):  const SizedBox(),
 
                     IconButton(
+    iconSize:50,
                       icon: const CircleAvatar(
+
                         child: Icon(Icons.restart_alt),
                       ),
                       onPressed: ()=>Provider.of<MyProvider>(context,listen: false).restartGame(),
@@ -75,68 +77,73 @@ mainAxisAlignment: MainAxisAlignment.center,
             );
   }
 
-  Expanded gameShape(BuildContext context, MyProvider provider, Object? secondPlayer) {
+  Expanded gameShape(BuildContext context, MyProvider provider, Object? secondPlayer,flex) {
     return Expanded(
-              child: Container(
-                margin: EdgeInsets.all(MediaQuery.of(context).size.height*0.05) ,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
-                    borderRadius:const BorderRadius.all(Radius.circular(20))
-                ),
-                child: GridView.count(
-                  padding: const EdgeInsets.all(15),
-                  crossAxisCount: 3,
-                  children: List.generate(
-                    9,
-                    (index) => InkWell(
-                      onTap:provider.gameOver ? null :
-                       ()=>Provider.of<MyProvider>(context,listen: false).onTap(index,secondPlayer),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: index == 0 ||
-                                  index == 1 ||
-                                  index == 3 ||
-                                  index == 4
-                              ? const Border(
-                                  right:
-                                      BorderSide(width: 2, color: customColor),
-                                  bottom:
-                                      BorderSide(width: 2, color: customColor),
-                                )
-                              : index == 2 || index == 5
-                                  ? const Border(
-                                      bottom: BorderSide(
-                                          width: 2, color: customColor),
-                                    )
-                                  : index != 8
-                                      ? const Border(
-                                          right: BorderSide(
-                                              width: 2, color: customColor),
-                                        )
-                                      : null,
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                            child: Text(
-                          Play.playerX.contains(index)
-                              ? 'X'
-                              : Play.playerO.contains(index)
-                                  ? 'O'
-                                  : '',
-                          style: Play.playerX.contains(index) ? xStyle : oStyle,
-                        )),
-                      ),
-                    ),
+      flex: flex,
+      child: Container(
+       // padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.05) ,
+        margin: EdgeInsets.all(MediaQuery.of(context).size.height*0.05) ,
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black,
+            ),
+            borderRadius:const BorderRadius.all(Radius.circular(20))
+        ),
+        child: Center(
+          child: GridView.count(
+            padding: const EdgeInsets.all(15),
+            crossAxisCount: 3,
+            children: List.generate(
+              9,
+              (index) => InkWell(
+                onTap:provider.gameOver ? null :
+                 ()=>Provider.of<MyProvider>(context,listen: false).onTap(index,secondPlayer),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: index == 0 ||
+                            index == 1 ||
+                            index == 3 ||
+                            index == 4
+                        ? const Border(
+                            right:
+                                BorderSide(width: 2, color: customColor),
+                            bottom:
+                                BorderSide(width: 2, color: customColor),
+                          )
+                        : index == 2 || index == 5
+                            ? const Border(
+                                bottom: BorderSide(
+                                    width: 2, color: customColor),
+                              )
+                            : index != 8
+                                ? const Border(
+                                    right: BorderSide(
+                                        width: 2, color: customColor),
+                                  )
+                                : null,
+                    color: Colors.white,
                   ),
+                  child: Center(
+                      child: Text(
+                    Play.playerX.contains(index)
+                        ? 'X'
+                        : Play.playerO.contains(index)
+                            ? 'O'
+                            : '',
+                    style: Play.playerX.contains(index) ? xStyle : oStyle,
+                  )),
                 ),
               ),
-            );
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Column firstBloc(BuildContext context, MyProvider provider) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
                children: [
                  SizedBox(
                   height:MediaQuery.of(context).size.height*0.07,
